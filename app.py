@@ -22,11 +22,11 @@ st.markdown("Chat with your financial assistant")
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
-
+context = st.text_area("Context", height=200)
 # Handle user input
 if prompt := st.chat_input("What would you like to know?"):
     # Format the prompt
-    formatted_prompt = f"Question: {prompt}\n\nExtract the necessary SQL parameters for this query."
+    formatted_prompt = f"Question: {prompt}\n\nExtract the necessary SQL parameters for this query.\n\nContext: {context}"
     
     # Add user message to chat history (show original prompt to user)
     st.session_state.messages.append({"role": "user", "content": prompt})
